@@ -1,14 +1,11 @@
 using System;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class Player : PlayerController
 {
     [Header("Setting values")]
-    public float moveSpeed = 12f;
-    public float jumpForce = 12f;
-    public float dashDuration = 0.4f;
-    public float dashSpeed = 20f;
+    public float moveSpeed = 5f;
+    public float dashSpeed = 10f;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField] private InputReader _inputReader;
@@ -37,18 +34,7 @@ public class Player : PlayerController
             }
         }
     }
-
-    private void OnEnable()
-    {
-        PlayerInput.DashEvent += HandleDashEvent;
-    }
-
-    private void OnDisable()
-    {
-        PlayerInput.DashEvent -= HandleDashEvent;
-    }
-
-   
+    
     protected void Start()
     {
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
@@ -57,12 +43,9 @@ public class Player : PlayerController
     protected void Update()
     {
         StateMachine.CurrentState.UpdateState();
+
+        Debug.Log(StateMachine.CurrentState.ToString());
     }
 
     public void AnimationEndTrigger() => StateMachine.CurrentState.AnimationEndTrigger();
-
-    private void HandleDashEvent()
-    {
-        // Dash
-    }
 }

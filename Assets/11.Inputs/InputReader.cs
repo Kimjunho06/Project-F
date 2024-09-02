@@ -8,8 +8,8 @@ using static Controls;
 public class InputReader : ScriptableObject, IPlayerActions
 {
     #region input event section
-    public event Action DashEvent;
-    public event Action<bool> InteractionEvent;
+    public bool IsDash;
+    public event Action InteractionEvent;
     #endregion
 
     #region input value section
@@ -51,10 +51,7 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            DashEvent?.Invoke();
-        }
+        IsDash = context.performed; 
     }
 
     public void OnMousePosition(InputAction.CallbackContext context)
@@ -65,8 +62,9 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void OnInteraction(InputAction.CallbackContext context)
     {
         if (context.performed)
-            InteractionEvent?.Invoke(true);
-        else if (context.canceled)
-            InteractionEvent?.Invoke(false);
+        {
+            InteractionEvent?.Invoke();
+        }
     }
+
 }

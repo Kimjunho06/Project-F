@@ -15,8 +15,6 @@ public abstract class PlayerController : MonoBehaviour
     public int FacingDirection { get; protected set; } = 1; //오른쪽을 향하고 있을때 1
     public Action<int> OnFlip;
 
-    public bool isDead;
-
     protected virtual void Awake()
     {
         Transform visualTrm = transform.Find("Visual");
@@ -68,19 +66,18 @@ public abstract class PlayerController : MonoBehaviour
 
     #region velocity control
 
-    public void SetVelocity(float x, float y, bool doNotFlip = false)
+    public void SetVelocity(Vector2 value, bool doNotFlip = false)
     {
-        RigidbodyCompo.velocity = new Vector2(x, y);
+        RigidbodyCompo.velocity = value;
+
+
         if (!doNotFlip)
-            FlipController(x);
+            FlipController(value.x);
     }
 
-    public void StopImmediately(bool withYAxis)
+    public void StopImmediately()
     {
-        if (withYAxis)
-            RigidbodyCompo.velocity = Vector2.zero;
-        else
-            RigidbodyCompo.velocity = new Vector2(0, RigidbodyCompo.velocity.y);
+        RigidbodyCompo.velocity = Vector2.zero;
     }
     #endregion
 }

@@ -5,7 +5,6 @@ public enum PlayerStateEnum
 {
     Idle,
     Walk,
-    Run,
 }
 
 public class PlayerStateMachine
@@ -20,7 +19,6 @@ public class PlayerStateMachine
         stateDictionary = new Dictionary<PlayerStateEnum, PlayerState>();
     }
 
-    //run once at first time!
     public void Initialize(PlayerStateEnum startState, Player player)
     {
         _player = player;
