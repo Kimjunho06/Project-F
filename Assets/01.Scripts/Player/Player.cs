@@ -9,6 +9,7 @@ public class Player : PlayerController
 
     public ItemType currentItem;
     public GameObject currentItemObj;
+    public LayerMask getObjLayer;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField] private InputReader _inputReader;
@@ -65,15 +66,15 @@ public class Player : PlayerController
 
 
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.G))
             PickItem(ItemType.None);
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.H))
             PickItem(ItemType.Seed);
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.J))
             PickItem(ItemType.WateringCan);
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.K))
             PickItem(ItemType.Fertilizer);
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.L))
             PickItem(ItemType.Sickle);
     }
 

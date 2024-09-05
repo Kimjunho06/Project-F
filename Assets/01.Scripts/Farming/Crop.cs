@@ -78,6 +78,7 @@ public class Crop : MonoBehaviour
         }
 
         Debug.Log($"{_plantedCrop.cropName} ¼öÈ®µÊ.");
+        isHarvestable = false;
 
         _plantedCrop = null;
 

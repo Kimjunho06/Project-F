@@ -12,12 +12,25 @@ public class PlayerFertilizerPickState : PlayerPickState
     {
         base.Enter();
 
-        // 밑, 앞 땅이 갈아져 있으면 기름진 땅
-        // 물까지 있다면 기름진 물 땅
-        // 아니라면 리턴
+        getObjLayer = _player.getObjLayer;
 
-        // 개수 소모
-
+        Collider2D[] getObj = GetObjects();
+        if (getObj != null)
+        {
+            foreach (Collider2D obj in getObj)
+            {
+                if (obj.TryGetComponent<Soil>(out Soil soil))
+                {
+                    if (!soil.currentState.HasFlag(SoilState.Fertile))
+                    {
+                        soil.Fertilize();
+                        // 개수 소모
+                        break;
+                    }
+                }
+            }
+            getObj = null;
+        }
     }
 
     public override void Exit()
@@ -30,7 +43,7 @@ public class PlayerFertilizerPickState : PlayerPickState
         base.UpdateState();
     }
 
-    protected override void InteractItem()
+    protected override void InteractEndItem()
     {
         _endtriggerCalled = true;
     }

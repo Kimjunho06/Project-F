@@ -12,14 +12,35 @@ public class PlayerWateringCanPickState : PlayerPickState
     {
         base.Enter();
 
-        // 밑, 앞에 땅이 갈아져 있으면 젖은 땅
-        // 앞에 물이면 수분 채우기
+        getObjLayer = _player.getObjLayer;
+
+        Collider2D[] getObj = GetObjects();
+        if (getObj != null)
+        {
+            foreach (Collider2D obj in getObj)
+            {
+                if (obj.TryGetComponent<Soil>(out Soil soil))
+                {
+                    if (!soil.currentState.HasFlag(SoilState.Wet))
+                    {
+                        soil.Water();
+                        break;
+                    }
+                }
+            }
+            getObj = null;
+        }
+        // 수분줄이기
+
+        getObjLayer = LayerMask.GetMask("Water");
+        Collider2D[] getWater = GetObjects();
+        if (getWater != null)
+            Debug.Log("수분채움.");
     }
 
     public override void Exit()
     {
         base.Exit();
-        // 수분줄이기
     }
 
     public override void UpdateState()
@@ -27,7 +48,7 @@ public class PlayerWateringCanPickState : PlayerPickState
         base.UpdateState();
     }
 
-    protected override void InteractItem()
+    protected override void InteractEndItem()
     {
         _endtriggerCalled = true;
     }

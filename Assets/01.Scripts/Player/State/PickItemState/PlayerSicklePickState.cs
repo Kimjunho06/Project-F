@@ -12,7 +12,27 @@ public class PlayerSicklePickState : PlayerPickState
     {
         base.Enter();
 
-        // 앞 범위 체크 후 다 자란 애들 수확
+        sizeMultiply = (10f / 8f) * 1.2f;
+
+        getObjLayer = _player.getObjLayer;
+
+        Collider2D[] getObj = GetObjects();
+        if (getObj != null)
+        {
+            foreach (Collider2D obj in getObj)
+            {
+                if (obj.TryGetComponent<Soil>(out Soil soil))
+                {
+                    if (soil.cropBase.isHarvestable)
+                    {
+                        soil.cropBase.Harvest();
+                        
+                    }
+                }
+            }
+            getObj = null;
+        }
+
     }
 
     public override void Exit()
@@ -25,7 +45,7 @@ public class PlayerSicklePickState : PlayerPickState
         base.UpdateState();
     }
 
-    protected override void InteractItem()
+    protected override void InteractEndItem()
     {
         _endtriggerCalled = true;
     }

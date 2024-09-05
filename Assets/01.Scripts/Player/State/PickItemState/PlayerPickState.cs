@@ -7,10 +7,11 @@ public abstract class PlayerPickState : PlayerState
     protected Vector3 getObjSize;
     protected LayerMask getObjLayer;
 
+    protected float sizeMultiply = 1;
+
     private Coroutine rotateCoroutine;
     private Vector3 objRot;
-
-
+ 
     public PlayerPickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -18,6 +19,8 @@ public abstract class PlayerPickState : PlayerState
     public override void Enter()
     {
         base.Enter();
+ 
+
         objRot = _player.currentItemObj.transform.eulerAngles;
 
         RotatePickItem(-25f);
@@ -47,8 +50,8 @@ public abstract class PlayerPickState : PlayerState
     // Update에서 해주면 모든 각도 오브젝트 가져옴.
     public Collider2D[] GetObjects()
     {
-        Vector3 pos = _player.transform.position + _player.prevInput.normalized;
-        Vector3 size = Vector3.one * 0.8f;
+        Vector3 pos = _player.transform.position + _player.prevInput.normalized - new Vector3(0, 0.1f, 0);
+        Vector3 size = Vector3.one * 0.8f * sizeMultiply;
         float angle = GetAngle();
 
         Collider2D[] objects = Physics2D.OverlapBoxAll(pos, size, angle, getObjLayer);
@@ -58,7 +61,7 @@ public abstract class PlayerPickState : PlayerState
     public Collider2D GetObject()
     {
         Vector3 pos = _player.transform.position + _player.prevInput.normalized;
-        Vector3 size = Vector3.one * 0.8f;
+        Vector3 size = Vector3.one * 0.8f * sizeMultiply;
         float angle = GetAngle();
 
         Collider2D objects = Physics2D.OverlapBox(pos, size, angle, getObjLayer);
@@ -101,7 +104,7 @@ public abstract class PlayerPickState : PlayerState
         _player.currentItemObj.transform.rotation = Quaternion.Euler(objRot);
     }
 
-    protected abstract void InteractItem();
+    protected abstract void InteractEndItem();
 
     private IEnumerator RotateItem(Quaternion targetRot, Vector3 objRot)
     {
@@ -121,6 +124,6 @@ public abstract class PlayerPickState : PlayerState
         }
         _player.currentItemObj.transform.rotation = Quaternion.identity;
 
-        InteractItem();
+        InteractEndItem();
     }
 }

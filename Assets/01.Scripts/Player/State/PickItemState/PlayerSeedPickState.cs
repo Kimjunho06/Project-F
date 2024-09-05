@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerSeedPickState : PlayerPickState
 {
+
+    CropSO crop;
     public PlayerSeedPickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -11,6 +13,9 @@ public class PlayerSeedPickState : PlayerPickState
     public override void Enter()
     {
         base.Enter();
+
+        getObjLayer = _player.getObjLayer;
+
         // 잡은 씨앗 이미지 정해주기
 
         // 밑, 앞 범위에 땅이 안갈려있으면 Idle하고 리턴
@@ -29,7 +34,7 @@ public class PlayerSeedPickState : PlayerPickState
         base.UpdateState();
     }
 
-    protected override void InteractItem()
+    protected override void InteractEndItem()
     {
         _endtriggerCalled = true;
     }
