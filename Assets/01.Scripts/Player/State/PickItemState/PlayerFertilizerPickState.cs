@@ -29,4 +29,9 @@ public class PlayerFertilizerPickState : PlayerPickState
     {
         base.UpdateState();
     }
+
+    protected override void InteractItem()
+    {
+        _endtriggerCalled = true;
+    }
 }

@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 1013586553}
   - component: {fileID: 1013586552}
   m_Layer: 0
-  m_Name: WaterCan
+  m_Name: WateringCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +918,10 @@ MonoBehaviour:
   moveSpeed: 3
   dashSpeed: 5
   currentItem: 0
+  currentItemObj: {fileID: 0}
   _inputReader: {fileID: 11400000, guid: 69bf6444d14a24a458b73fa295a35a95, type: 2}
+  xInput: 0
+  yInput: 0
 --- !u!70 &1704865182
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -26,4 +26,9 @@ public class PlayerWateringCanPickState : PlayerPickState
     {
         base.UpdateState();
     }
+
+    protected override void InteractItem()
+    {
+        _endtriggerCalled = true;
+    }
 }

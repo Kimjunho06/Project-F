@@ -8,6 +8,7 @@ public class Player : PlayerController
     public float dashSpeed = 10f;
 
     public ItemType currentItem;
+    public GameObject currentItemObj;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField] private InputReader _inputReader;
@@ -17,6 +18,7 @@ public class Player : PlayerController
     public float yInput;
 
     public Vector3 prevInput { get; private set; }
+
 
     protected override void Awake()
     {
@@ -45,6 +47,8 @@ public class Player : PlayerController
     protected void Start()
     {
         currentItem = ItemType.None;
+        PickItem(currentItem);
+
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
 
@@ -77,7 +81,16 @@ public class Player : PlayerController
 
     public void PickItem(ItemType itemType)
     {
+        Transform visual = transform.Find("Visual");
+        Transform rHand = visual.Find("RightHand");
+
+        GameObject prevObj = rHand.Find(currentItem.ToString()).gameObject;
+        prevObj.SetActive(false);
+
         currentItem = itemType;
+
+        currentItemObj = rHand.Find(itemType.ToString()).gameObject;
+        currentItemObj.SetActive(true); 
     }
 
     // 이전 보는 방향을 구하기 위함. // 8방향

@@ -24,4 +24,9 @@ public class PlayerSicklePickState : PlayerPickState
     {
         base.UpdateState();
     }
+
+    protected override void InteractItem()
+    {
+        _endtriggerCalled = true;
+    }
 }
