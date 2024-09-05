@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff7c2db4ae154e4caabc9500e4e28c8, type: 3}
+  m_Name: Potato
+  m_EditorClassIdentifier: 
+  cropName: "\uAC10\uC790"
+  cropSprites:
+  - {fileID: -323162862, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: 658550905, guid: 5735c3ee9081556459494e0eed5491d5, type: 3}
+  - {fileID: -2017017429, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: 1215495124, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: -10276166, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: -2124370870, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  grownTime: 5
