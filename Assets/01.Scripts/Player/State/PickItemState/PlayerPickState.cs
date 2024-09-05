@@ -48,7 +48,7 @@ public abstract class PlayerPickState : PlayerState
     public Collider2D[] GetObject()
     {
         Vector3 pos = _player.transform.position + _player.prevInput.normalized;
-        Vector3 size = new Vector3(2, 1, 0);
+        Vector3 size = Vector3.one * 0.8f;
         float angle = GetAngle();
 
         Collider2D[] objects = Physics2D.OverlapBoxAll(pos, size, angle, getObjLayer);
