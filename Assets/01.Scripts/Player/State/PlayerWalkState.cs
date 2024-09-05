@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Windows;
 
-public class PlayerWalkState : PlayerState
+public class PlayerWalkState : PlayerGroundState
 {
     public PlayerWalkState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {

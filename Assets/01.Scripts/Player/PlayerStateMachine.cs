@@ -1,10 +1,15 @@
 using System.Collections.Generic;
-using UnityEngine.Playables;
 
 public enum PlayerStateEnum
 {
     Idle,
     Walk,
+    NonePick,
+    SeedPick, // ¾¾¾Ñ.
+    WateringCanPick, // ¹°»Ñ¸®°³.
+    FertilizerPick, // ºñ·á.
+    SicklePick, // ³´
+    
 }
 
 public class PlayerStateMachine

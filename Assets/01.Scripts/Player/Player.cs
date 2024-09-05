@@ -7,9 +7,16 @@ public class Player : PlayerController
     public float moveSpeed = 5f;
     public float dashSpeed = 10f;
 
+    public ItemType currentItem;
+
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField] private InputReader _inputReader;
     public InputReader PlayerInput => _inputReader;
+
+    public float xInput;
+    public float yInput;
+
+    public Vector3 prevInput { get; private set; }
 
     protected override void Awake()
     {
@@ -37,6 +44,7 @@ public class Player : PlayerController
     
     protected void Start()
     {
+        currentItem = ItemType.None;
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
     }
 
@@ -44,8 +52,42 @@ public class Player : PlayerController
     {
         StateMachine.CurrentState.UpdateState();
 
-        Debug.Log(StateMachine.CurrentState.ToString());
+
+        xInput = PlayerInput.XInput;
+        yInput = PlayerInput.YInput;
+
+        if (Mathf.Abs(xInput) > 0.05f || Mathf.Abs(yInput) > 0.05f)
+            SetPrevInput(xInput, yInput);
+
+
+
+        if (Input.GetKeyDown(KeyCode.T))
+            PickItem(ItemType.None);
+        if (Input.GetKeyDown(KeyCode.Y))
+            PickItem(ItemType.Seed);
+        if (Input.GetKeyDown(KeyCode.U))
+            PickItem(ItemType.WateringCan);
+        if (Input.GetKeyDown(KeyCode.I))
+            PickItem(ItemType.Fertilizer);
+        if (Input.GetKeyDown(KeyCode.O))
+            PickItem(ItemType.Sickle);
     }
 
     public void AnimationEndTrigger() => StateMachine.CurrentState.AnimationEndTrigger();
+
+    public void PickItem(ItemType itemType)
+    {
+        currentItem = itemType;
+    }
+
+    // 이전 보는 방향을 구하기 위함. // 8방향
+    private void SetPrevInput(float xinput, float yinput)
+    {
+        if (xinput != 0)
+            xinput = Mathf.Sign(xinput);
+        if (yinput != 0)
+            yinput = Mathf.Sign(yinput);
+
+        prevInput = transform.right * FacingDirection * xinput + transform.up * yinput;
+    }
 }

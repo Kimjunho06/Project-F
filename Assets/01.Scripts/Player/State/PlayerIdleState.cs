@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState
+public class PlayerIdleState : PlayerGroundState
 {
     public PlayerIdleState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
@@ -24,6 +24,9 @@ public class PlayerIdleState : PlayerState
         base.UpdateState();
         float xInput = _player.PlayerInput.XInput;
         float yInput = _player.PlayerInput.YInput;
+
+        _player.AnimatorCompo.SetFloat("XInput", _player.prevInput.x);
+        _player.AnimatorCompo.SetFloat("YInput", _player.prevInput.y);
 
         if (Mathf.Abs(xInput) > 0.05f || Mathf.Abs(yInput) > 0.05f)
         {
