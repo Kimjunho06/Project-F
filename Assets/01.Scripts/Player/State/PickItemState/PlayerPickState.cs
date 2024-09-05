@@ -45,13 +45,23 @@ public abstract class PlayerPickState : PlayerState
     }
 
     // Update에서 해주면 모든 각도 오브젝트 가져옴.
-    public Collider2D[] GetObject()
+    public Collider2D[] GetObjects()
     {
         Vector3 pos = _player.transform.position + _player.prevInput.normalized;
         Vector3 size = Vector3.one * 0.8f;
         float angle = GetAngle();
 
         Collider2D[] objects = Physics2D.OverlapBoxAll(pos, size, angle, getObjLayer);
+        return objects;
+    }
+
+    public Collider2D GetObject()
+    {
+        Vector3 pos = _player.transform.position + _player.prevInput.normalized;
+        Vector3 size = Vector3.one * 0.8f;
+        float angle = GetAngle();
+
+        Collider2D objects = Physics2D.OverlapBox(pos, size, angle, getObjLayer);
         return objects;
     }
 

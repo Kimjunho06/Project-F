@@ -11,8 +11,6 @@ public class PlayerSeedPickState : PlayerPickState
     public override void Enter()
     {
         base.Enter();
-
-        getObjLayer = LayerMask.GetMask("Test");
         // 잡은 씨앗 이미지 정해주기
 
         // 밑, 앞 범위에 땅이 안갈려있으면 Idle하고 리턴
