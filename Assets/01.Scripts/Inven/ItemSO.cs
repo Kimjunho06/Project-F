@@ -7,7 +7,7 @@ public enum ItemType
     WateringCan,
     Fertilizer,
     Sickle,
-    // 捞 困肺 结林祭..
+    // 捞 关肺 结林祭..
     Interectable,
     Default,
 }

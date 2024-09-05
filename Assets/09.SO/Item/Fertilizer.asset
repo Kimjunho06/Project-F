@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Fertilizer
   <ItemImage>k__BackingField: {fileID: 39495071, guid: f83e8ddd6847fa5408f7c952931badee, type: 3}
-  <StackCount>k__BackingField: 0
+  <StackCount>k__BackingField: 1
   <Price>k__BackingField: 0
   <ItemType>k__BackingField: 3
