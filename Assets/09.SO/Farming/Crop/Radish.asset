@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff7c2db4ae154e4caabc9500e4e28c8, type: 3}
+  m_Name: Radish
+  m_EditorClassIdentifier: 
+  cropName: "\uBB34"
+  cropSprites:
+  - {fileID: -1644966925, guid: 425b13d9ec8f16f42b62890228fba334, type: 3}
+  - {fileID: 658550905, guid: 5735c3ee9081556459494e0eed5491d5, type: 3}
+  - {fileID: -416665632, guid: 425b13d9ec8f16f42b62890228fba334, type: 3}
+  - {fileID: 704658070, guid: 425b13d9ec8f16f42b62890228fba334, type: 3}
+  - {fileID: 1260499517, guid: 425b13d9ec8f16f42b62890228fba334, type: 3}
+  - {fileID: -455557335, guid: 425b13d9ec8f16f42b62890228fba334, type: 3}
+  grownTime: 30
