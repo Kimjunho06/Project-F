@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerSeedPickState : PlayerPickState
 {
-
-    CropSO crop;
     public PlayerSeedPickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -16,11 +14,23 @@ public class PlayerSeedPickState : PlayerPickState
 
         getObjLayer = _player.getObjLayer;
 
-        // 잡은 씨앗 이미지 정해주기
-
-        // 밑, 앞 범위에 땅이 안갈려있으면 Idle하고 리턴
-
-        // 잡은 씨앗 개수 줄이기
+        Collider2D[] getObj = GetObjects();
+        if (getObj != null)
+        {
+            foreach (Collider2D obj in getObj)
+            {
+                if (obj.TryGetComponent<Soil>(out Soil soil))
+                {
+                    if (soil.currentState.HasFlag(SoilState.Plantable))
+                    {
+                        // soil.Plant();
+                        // 씨앗 개수 줄이기
+                        break;
+                    }
+                }
+            }
+            getObj = null;
+        }
 
     }
 

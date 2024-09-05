@@ -11,7 +11,7 @@ public abstract class PlayerPickState : PlayerState
 
     private Coroutine rotateCoroutine;
     private Vector3 objRot;
- 
+
     public PlayerPickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -19,9 +19,6 @@ public abstract class PlayerPickState : PlayerState
     public override void Enter()
     {
         base.Enter();
- 
-
-        objRot = _player.currentItemObj.transform.eulerAngles;
 
         RotatePickItem(-25f);
         _player.StopImmediately();
@@ -37,6 +34,8 @@ public abstract class PlayerPickState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+
+        // 아이템 바꾸면 취소 만들기
         
         // 상호작용 중 움직이면 취소.
         if (Mathf.Abs(_player.xInput) > 0.05f || Mathf.Abs(_player.yInput) > 0.05f)
@@ -85,7 +84,7 @@ public abstract class PlayerPickState : PlayerState
             return;
         }
 
-        objRot = _player.currentItemObj.transform.eulerAngles;
+        objRot = _player.itemObj.transform.eulerAngles;
         Quaternion targetRot = Quaternion.Euler(objRot + new Vector3(0, 0, zAngle));
 
         rotateCoroutine = _player.StartCoroutine(RotateItem(targetRot, objRot));
@@ -101,7 +100,7 @@ public abstract class PlayerPickState : PlayerState
         _player.StopCoroutine(rotateCoroutine);
         rotateCoroutine = null;
 
-        _player.currentItemObj.transform.rotation = Quaternion.Euler(objRot);
+        _player.itemObj.transform.rotation = Quaternion.Euler(objRot);
     }
 
     protected abstract void InteractEndItem();
@@ -109,20 +108,20 @@ public abstract class PlayerPickState : PlayerState
     private IEnumerator RotateItem(Quaternion targetRot, Vector3 objRot)
     {
         float rotSpeed = 100;
-        while (Quaternion.Angle(_player.currentItemObj.transform.rotation, targetRot) > 0.1f)
+        while (Quaternion.Angle(_player.itemObj.transform.rotation, targetRot) > 0.1f)
         {
-            _player.currentItemObj.transform.rotation = Quaternion.RotateTowards(_player.currentItemObj.transform.rotation, targetRot, rotSpeed * Time.deltaTime);
+            _player.itemObj.transform.rotation = Quaternion.RotateTowards(_player.itemObj.transform.rotation, targetRot, rotSpeed * Time.deltaTime);
             yield return null;
 
         }
 
-        while (Quaternion.Angle(_player.currentItemObj.transform.rotation, Quaternion.identity) > 0.1f)
+        while (Quaternion.Angle(_player.itemObj.transform.rotation, Quaternion.identity) > 0.1f)
         {
-            _player.currentItemObj.transform.rotation = Quaternion.RotateTowards(_player.currentItemObj.transform.rotation, Quaternion.Euler(objRot), rotSpeed * Time.deltaTime);
+            _player.itemObj.transform.rotation = Quaternion.RotateTowards(_player.itemObj.transform.rotation, Quaternion.Euler(objRot), rotSpeed * Time.deltaTime);
             yield return null;
 
         }
-        _player.currentItemObj.transform.rotation = Quaternion.identity;
+        _player.itemObj.transform.rotation = Quaternion.identity;
 
         InteractEndItem();
     }

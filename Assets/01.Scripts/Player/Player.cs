@@ -7,8 +7,9 @@ public class Player : PlayerController
     public float moveSpeed = 5f;
     public float dashSpeed = 10f;
 
-    public ItemType currentItem;
-    public GameObject currentItemObj;
+    public Item currentItem;
+    public GameObject itemObj;
+
     public LayerMask getObjLayer;
 
     public PlayerStateMachine StateMachine { get; private set; }
@@ -47,10 +48,12 @@ public class Player : PlayerController
     
     protected void Start()
     {
-        currentItem = ItemType.None;
-        PickItem(currentItem);
-
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
+
+        if (Inventory.instance.ItemList.Count > 0)
+            currentItem = Inventory.instance.ItemList[0];
+        else
+            currentItem = Inventory.instance.NoneItem;
     }
 
     protected void Update()
@@ -63,36 +66,9 @@ public class Player : PlayerController
 
         if (Mathf.Abs(xInput) > 0.05f || Mathf.Abs(yInput) > 0.05f)
             SetPrevInput(xInput, yInput);
-
-
-
-        if (Input.GetKeyDown(KeyCode.G))
-            PickItem(ItemType.None);
-        if (Input.GetKeyDown(KeyCode.H))
-            PickItem(ItemType.Seed);
-        if (Input.GetKeyDown(KeyCode.J))
-            PickItem(ItemType.WateringCan);
-        if (Input.GetKeyDown(KeyCode.K))
-            PickItem(ItemType.Fertilizer);
-        if (Input.GetKeyDown(KeyCode.L))
-            PickItem(ItemType.Sickle);
     }
 
     public void AnimationEndTrigger() => StateMachine.CurrentState.AnimationEndTrigger();
-
-    public void PickItem(ItemType itemType)
-    {
-        Transform visual = transform.Find("Visual");
-        Transform rHand = visual.Find("RightHand");
-
-        GameObject prevObj = rHand.Find(currentItem.ToString()).gameObject;
-        prevObj.SetActive(false);
-
-        currentItem = itemType;
-
-        currentItemObj = rHand.Find(itemType.ToString()).gameObject;
-        currentItemObj.SetActive(true); 
-    }
 
     // 이전 보는 방향을 구하기 위함. // 8방향
     private void SetPrevInput(float xinput, float yinput)
@@ -103,5 +79,15 @@ public class Player : PlayerController
             yinput = Mathf.Sign(yinput);
 
         prevInput = transform.right * FacingDirection * xinput + transform.up * yinput;
+    }
+
+    public void SetCurrentItem(int idx)
+    {
+        currentItem = Inventory.instance.ItemList[idx];
+
+        SpriteRenderer sprite = itemObj.GetComponent<SpriteRenderer>();
+        sprite.sprite = currentItem.ItemData.ItemImage;
+
+        sprite.sortingOrder = -1;
     }
 }

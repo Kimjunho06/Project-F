@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerNonePickState : PlayerPickState
+public class PlayerNoneItemPickState : PlayerPickState
 {
 
 
-    public PlayerNonePickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public PlayerNoneItemPickState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
@@ -29,10 +29,14 @@ public class PlayerNonePickState : PlayerPickState
                         break;
                     }
                 }
+                if (obj.TryGetComponent<Item>(out Item item))
+                {
+                    Inventory.instance.AddItem(item);
+                    break;
+                }
             }
             getObj = null;
         }
-        // 플레이어 범위에 아이템 있으면 먹기
     }
 
     public override void Exit()

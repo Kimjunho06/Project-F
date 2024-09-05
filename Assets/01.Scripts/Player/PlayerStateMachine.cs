@@ -4,7 +4,7 @@ public enum PlayerStateEnum
 {
     Idle,
     Walk,
-    NonePick,
+    NoneItemPick,
     SeedPick, // ¾¾¾Ñ.
     WateringCanPick, // ¹°»Ñ¸®°³.
     FertilizerPick, // ºñ·á.

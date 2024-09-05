@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerGroundState : PlayerState
@@ -30,7 +29,10 @@ public class PlayerGroundState : PlayerState
     // 플레이어가 들고 있는 아이템의 상태로 바꿔주기
     private void InteractTool()
     {
-        string curItemString = $"{_player.currentItem}Pick";
+        if (_player.currentItem.ItemData.ItemType > ItemType.Sickle)
+            return;
+
+        string curItemString = $"{_player.currentItem.ItemData.ItemType}Pick";
         PlayerStateEnum changeStateEnum = (PlayerStateEnum)Enum.Parse(typeof(PlayerStateEnum), curItemString);
 
         _player.StateMachine.ChangeState(changeStateEnum);

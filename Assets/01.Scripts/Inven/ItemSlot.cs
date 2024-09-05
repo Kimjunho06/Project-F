@@ -25,7 +25,7 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (currentItem.ItemData.ItemType == Type.Interectable)
+        if (currentItem.ItemData.ItemType == ItemType.Interectable)
         {
             Use();
         }
