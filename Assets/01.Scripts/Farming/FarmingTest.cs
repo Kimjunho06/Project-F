@@ -5,7 +5,7 @@ using UnityEngine;
 public class FarmingTest : MonoBehaviour
 {
     [SerializeField]
-    private CropSO[] _testSO;
+    private ItemSO[] _testSO;
     private Soil _soil;
 
     private void Awake()

@@ -53,7 +53,7 @@ public class Crop : MonoBehaviour
     {
         if ((plantedSoil.currentState & SoilState.Wet) == SoilState.Default)
         {
-            plantedSoil.currentState ^= SoilState.Wet;
+            plantedSoil.currentState ^= SoilState.Planted;
             _plantedCrop = null;
 
             gameObject.SetActive(false);
@@ -78,8 +78,9 @@ public class Crop : MonoBehaviour
         }
 
         Debug.Log($"{_plantedCrop.cropName} ¼öÈ®µÊ.");
-        isHarvestable = false;
+        plantedSoil.Plow(true);
 
+        isHarvestable = false;
         _plantedCrop = null;
 
         gameObject.SetActive(false);

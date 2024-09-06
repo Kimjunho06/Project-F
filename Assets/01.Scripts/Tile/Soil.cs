@@ -13,26 +13,42 @@ public enum SoilState
     Planted = 1 << 3,
 }
 
+[Serializable]
+public struct SeedCropChain
+{
+    public ItemSO cropSeed;
+    public CropSO crop;
+}
+
 public class Soil : MonoBehaviour
 {
     [SerializeField]
     private Sprite[] _soilSprites;
+    [SerializeField]
+    private SeedCropChain[] _seedCropChains;
     public SoilState currentState { get; set; }
     public Crop cropBase { get; set; }
+    private Dictionary<ItemSO, CropSO> _seedToCrop = new Dictionary<ItemSO, CropSO>();
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         cropBase = transform.GetChild(0).GetComponent<Crop>();
         cropBase.plantedSoil = this;
 
         cropBase.gameObject.SetActive(false);
+
+        foreach (SeedCropChain chain in _seedCropChains)
+        {
+            _seedToCrop.Add(chain.cropSeed, chain.crop);
+        }
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public bool Plow()
+    public bool Plow(bool isHarvest = false)
     {
-        if (currentState != SoilState.Default)
+        if (!isHarvest && currentState != SoilState.Default)
         {
             return false;
         }
@@ -79,12 +95,24 @@ public class Soil : MonoBehaviour
         return false;
     }
 
-    public bool Plant(CropSO crop)
+    public bool Plant(ItemSO cropItem)
     {
         if (currentState == SoilState.Default)
         {
             return false;
         }
+
+        if ((currentState & SoilState.Planted) != SoilState.Default)
+        {
+            return false;
+        }
+
+        if (cropItem.ItemType != ItemType.CropSeed)
+        {
+            return false;
+        }
+
+        CropSO crop = _seedToCrop[cropItem];
 
         cropBase.gameObject.SetActive(true);
 
