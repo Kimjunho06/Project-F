@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff7c2db4ae154e4caabc9500e4e28c8, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  cropName: "\uB2F9\uADFC"
-  cropSprites:
-  - {fileID: 1573268260, guid: 37b7028394fdc204ca1797e554db1f18, type: 3}
+  <cropName>k__BackingField: "\uB2F9\uADFC"
+  <cropSprites>k__BackingField:
   - {fileID: 658550905, guid: 5735c3ee9081556459494e0eed5491d5, type: 3}
   - {fileID: 781472181, guid: 37b7028394fdc204ca1797e554db1f18, type: 3}
   - {fileID: -975791865, guid: 37b7028394fdc204ca1797e554db1f18, type: 3}
   - {fileID: 2086033061, guid: 37b7028394fdc204ca1797e554db1f18, type: 3}
-  - {fileID: -1451811901, guid: 37b7028394fdc204ca1797e554db1f18, type: 3}
-  grownTime: 15
+  <grownTime>k__BackingField: 15

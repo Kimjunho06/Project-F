@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dff7c2db4ae154e4caabc9500e4e28c8, type: 3}
-  m_Name: Spinach
+  m_Name: Turnip
   m_EditorClassIdentifier: 
-  cropName: "\uC2DC\uAE08\uCE58"
-  cropSprites:
-  - {fileID: 1684319682, guid: 4101fbf20d296514b959f37cdd6c6fed, type: 3}
+  <cropName>k__BackingField: "\uC21C\uBB34"
+  <cropSprites>k__BackingField:
   - {fileID: 658550905, guid: 5735c3ee9081556459494e0eed5491d5, type: 3}
-  - {fileID: 197856573, guid: 4101fbf20d296514b959f37cdd6c6fed, type: 3}
-  - {fileID: -47956939, guid: 4101fbf20d296514b959f37cdd6c6fed, type: 3}
-  - {fileID: 2070441389, guid: 4101fbf20d296514b959f37cdd6c6fed, type: 3}
-  - {fileID: 301885522, guid: 4101fbf20d296514b959f37cdd6c6fed, type: 3}
-  grownTime: 20
+  - {fileID: 131215190, guid: f861466d52e52b24fb959140ba6d3c0b, type: 3}
+  - {fileID: -653757420, guid: f861466d52e52b24fb959140ba6d3c0b, type: 3}
+  - {fileID: 18105491, guid: f861466d52e52b24fb959140ba6d3c0b, type: 3}
+  <grownTime>k__BackingField: 10

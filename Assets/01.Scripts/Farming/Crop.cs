@@ -41,9 +41,9 @@ public class Crop : MonoBehaviour
 
         _plantedCrop = crop;
         isHarvestable = false;
-        _spriteRenderer.sprite = _plantedCrop.cropSprites[1];
-        _cropGrowthStage = 1;
-        _maxCropGrowthStage = _plantedCrop.cropSprites.Length - 2;
+        _spriteRenderer.sprite = _plantedCrop.cropSprites[0];
+        _cropGrowthStage = 0;
+        _maxCropGrowthStage = _plantedCrop.cropSprites.Length - 1;
         _grownTimer = 0f;
 
         return true;
