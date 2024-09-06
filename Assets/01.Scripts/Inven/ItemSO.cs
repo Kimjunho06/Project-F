@@ -3,16 +3,17 @@ using UnityEngine;
 public enum ItemType
 {
     NoneItem = 0,
-    Seed,
+    CropSeed,
     WateringCan,
     Fertilizer,
     Sickle,
-    // ÀÌ ¹Ø·Î ½áÁÖ¼À..
+    Crop,
+    // ì´ ì¤„ì— ì¶”ê°€í•˜ì‚¼..
     Interectable,
     Default,
 }
 
-[CreateAssetMenu(fileName = "ItemSO")]
+[CreateAssetMenu(fileName = "ItemSO", menuName = "SO/Item")]
 public class ItemSO : ScriptableObject
 {
     [field: SerializeField] public string ItemName { get; private set; }

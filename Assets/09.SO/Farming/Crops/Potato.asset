@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dff7c2db4ae154e4caabc9500e4e28c8, type: 3}
-  m_Name: Onion
+  m_Name: Potato
   m_EditorClassIdentifier: 
-  cropName: "\uC591\uD30C"
-  cropSprites:
-  - {fileID: -824002570, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
+  <cropName>k__BackingField: "\uAC10\uC790"
+  <cropSprites>k__BackingField:
   - {fileID: 658550905, guid: 5735c3ee9081556459494e0eed5491d5, type: 3}
-  - {fileID: -41790446, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
-  - {fileID: -198005373, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
-  - {fileID: 1159342885, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
-  - {fileID: -330063195, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
-  grownTime: 25
+  - {fileID: -2017017429, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: 1215495124, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  - {fileID: -10276166, guid: 9c5f28153412f1f438e7875f8bc15524, type: 3}
+  <grownTime>k__BackingField: 5
