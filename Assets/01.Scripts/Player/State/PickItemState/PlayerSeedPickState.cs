@@ -23,9 +23,12 @@ public class PlayerSeedPickState : PlayerPickState
                 {
                     if (soil.currentState.HasFlag(SoilState.Plantable))
                     {
-                        // soil.Plant();
-                        // ¾¾¾Ñ °³¼ö ÁÙÀÌ±â
-                        break;
+                        if (Inventory.instance.Slots[InventoryBar.instance.curIndex].CurrentStackCount > 0)
+                        {
+                            InventoryBar.instance.UseItem(1);
+                            soil.Plant(_player.currentItem.ItemData);
+                            break;
+                        }
                     }
                 }
             }

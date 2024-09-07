@@ -23,9 +23,12 @@ public class PlayerFertilizerPickState : PlayerPickState
                 {
                     if (!soil.currentState.HasFlag(SoilState.Fertile))
                     {
-                        soil.Fertilize();
-                        // 개수 소모
-                        break;
+                        if (Inventory.instance.Slots[InventoryBar.instance.curIndex].CurrentStackCount > 0)
+                        {
+                            soil.Fertilize();
+                            InventoryBar.instance.UseItem(1);
+                            break;
+                        }
                     }
                 }
             }

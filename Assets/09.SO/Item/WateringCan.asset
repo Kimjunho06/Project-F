@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: WateringCan
   <ItemImage>k__BackingField: {fileID: -1146076019, guid: 1c98e3c395daa2c43b7dd076edb14bb5, type: 3}
-  <StackCount>k__BackingField: 1
+  <StackCount>k__BackingField: 100
   <Price>k__BackingField: 0
   <ItemType>k__BackingField: 2

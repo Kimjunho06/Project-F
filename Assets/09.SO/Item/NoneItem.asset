@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de74711919f247548a61c8c1219acd5a, type: 3}
   m_Name: NoneItem
   m_EditorClassIdentifier: 
-  itemName: NoneItem
-  itemImage: {fileID: 0}
-  stackCount: 0
-  price: 0
-  itemType: 1
+  <ItemName>k__BackingField: NoneItem
+  <ItemImage>k__BackingField: {fileID: 0}
+  <StackCount>k__BackingField: 0
+  <Price>k__BackingField: 0
+  <ItemType>k__BackingField: 0

@@ -8,7 +8,7 @@ public enum ItemType
     Fertilizer,
     Sickle,
     Crop,
-    // 이 줄에 추가하삼..
+    // ??줄에 추�??�삼..
     Interectable,
     Default,
 }

@@ -11,6 +11,7 @@ public class Player : PlayerController
     public GameObject itemObj;
 
     public LayerMask getObjLayer;
+    public LayerMask whatIsWater;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField] private InputReader _inputReader;
@@ -51,9 +52,9 @@ public class Player : PlayerController
         StateMachine.Initialize(PlayerStateEnum.Idle, this);
 
         if (Inventory.instance.ItemList.Count > 0)
-            currentItem = Inventory.instance.ItemList[0];
+            SetCurrentItem(0);
         else
-            currentItem = Inventory.instance.NoneItem;
+            SetCurrentItem(Inventory.instance.ItemList.Count);
     }
 
     protected void Update()
@@ -83,7 +84,12 @@ public class Player : PlayerController
 
     public void SetCurrentItem(int idx)
     {
-        currentItem = Inventory.instance.ItemList[idx];
+        if (Inventory.instance.ItemList.Count <= idx)
+        {
+            currentItem = Inventory.instance.NoneItem;
+        }
+        else
+            currentItem = Inventory.instance.ItemList[idx];
 
         SpriteRenderer sprite = itemObj.GetComponent<SpriteRenderer>();
         sprite.sprite = currentItem.ItemData.ItemImage;

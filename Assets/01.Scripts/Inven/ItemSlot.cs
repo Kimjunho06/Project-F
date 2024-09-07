@@ -11,7 +11,11 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
     public Item CurrentItem => currentItem;
 
     private int currentStackCount = 0;
-    public int CurrentStackCount => currentStackCount;
+    public int CurrentStackCount
+    {
+        get { return currentStackCount; }
+        set { currentStackCount = value; }
+    }
 
     private TextMeshProUGUI stackText = null;
     private Image image = null;
@@ -35,12 +39,13 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
     {
         if (currentStackCount > 0)
         {
+
             currentStackCount--;
             currentItem.Use();
-            Inventory.instance.ItemList.Remove(currentItem);
 
             if (currentStackCount <= 0)
             {
+                Inventory.instance.ItemList.Remove(currentItem);
                 currentItem = Inventory.instance.NoneItem;
                 image.sprite = currentItem.ItemData.ItemImage;
             }

@@ -23,19 +23,27 @@ public class PlayerWateringCanPickState : PlayerPickState
                 {
                     if (!soil.currentState.HasFlag(SoilState.Wet))
                     {
-                        soil.Water();
-                        break;
+                        if (Inventory.instance.Slots[InventoryBar.instance.curIndex].CurrentStackCount > 0)
+                        {
+                            soil.Water();
+                            break;
+                        }
                     }
                 }
             }
             getObj = null;
         }
-        // 수분줄이기
 
-        getObjLayer = LayerMask.GetMask("Water");
+        InventoryBar.instance.UseItem(10);
+        
+        getObjLayer = _player.whatIsWater;
         Collider2D[] getWater = GetObjects();
-        if (getWater != null)
-            Debug.Log("수분채움.");
+
+        if (getWater.Length > 0)
+        {
+            int maxCnt = _player.currentItem.ItemData.StackCount;
+            Inventory.instance.Slots[InventoryBar.instance.curIndex].SetItem(_player.currentItem, maxCnt);
+        }
     }
 
     public override void Exit()

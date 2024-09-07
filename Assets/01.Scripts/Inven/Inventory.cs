@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     List<ItemSlot> slots = new List<ItemSlot>(); //슬롯리스트
+    public List<ItemSlot> Slots => slots;
     [field: SerializeField] public Item NoneItem { get; private set; }
     [field: SerializeField] public List<Item> ItemList { get; private set; } //소지한 아이템 리스트
     [SerializeField] private GameObject slotPrefab;
@@ -27,6 +28,7 @@ public class Inventory : MonoBehaviour
         }
         GetComponentsInChildren<ItemSlot>(slots); //인벤토리 찾아오기
     }
+
 
 
     public void RedrawInven()
