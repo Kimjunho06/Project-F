@@ -6,6 +6,7 @@ public class DestroyText : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        if (collision.gameObject.tag == "player")
+            gameObject.SetActive(false);
     }
 }
