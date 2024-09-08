@@ -61,6 +61,10 @@ public class Player : PlayerController
     {
         StateMachine.CurrentState.UpdateState();
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            InventoryBar.instance.UseItem(1);
+        }
 
         xInput = PlayerInput.XInput;
         yInput = PlayerInput.YInput;

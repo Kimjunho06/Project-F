@@ -32,7 +32,10 @@ public class PlayerNoneItemPickState : PlayerPickState
                 if (obj.TryGetComponent<Item>(out Item item))
                 {
                     Inventory.instance.AddItem(item);
-                    item.gameObject.SetActive(false); // 먹은 아이템 삭제 . 풀만들면 바꿀거임 아마도
+                    InventoryBar.instance.RedrawInven();
+                    if (item.ItemData.ItemType != ItemType.Seed && item.ItemData.ItemType != ItemType.Fertilizer)
+                        item.gameObject.SetActive(false); // 먹은 아이템 삭제 . 풀만들면 바꿀거임 아마도
+
                     break;
                 }
             }

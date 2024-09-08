@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: "\uC591\uD30C"
   <ItemImage>k__BackingField: {fileID: -330063195, guid: 581046ca3a2b2dc4e931aff2a1517097, type: 3}
-  <StackCount>k__BackingField: 64
+  <StackCount>k__BackingField: 1
   <Price>k__BackingField: 0
   <ItemType>k__BackingField: 5
