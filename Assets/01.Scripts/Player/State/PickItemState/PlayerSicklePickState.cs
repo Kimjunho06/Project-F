@@ -12,26 +12,7 @@ public class PlayerSicklePickState : PlayerPickState
     {
         base.Enter();
 
-        sizeMultiply = (10f / 8f) * 1.2f;
-
-        getObjLayer = _player.getObjLayer;
-
-        Collider2D[] getObj = GetObjects();
-        if (getObj != null)
-        {
-            foreach (Collider2D obj in getObj)
-            {
-                if (obj.TryGetComponent<Soil>(out Soil soil))
-                {
-                    if (soil.cropBase.isHarvestable)
-                    {
-                        soil.cropBase.Harvest();
-                        
-                    }
-                }
-            }
-            getObj = null;
-        }
+        
 
     }
 
@@ -47,6 +28,25 @@ public class PlayerSicklePickState : PlayerPickState
 
     protected override void InteractEndItem()
     {
+        getObjLayer = _player.getObjLayer;
+
+        Collider2D[] getObj = GetObjects();
+        if (getObj != null)
+        {
+            foreach (Collider2D obj in getObj)
+            {
+                if (obj.TryGetComponent<Soil>(out Soil soil))
+                {
+                    if (soil.currentState == SoilState.Default)
+                    {
+                        soil.Plow();
+                        break;
+                    }
+                }
+            }
+            getObj = null;
+        }
+
         _endtriggerCalled = true;
     }
 }

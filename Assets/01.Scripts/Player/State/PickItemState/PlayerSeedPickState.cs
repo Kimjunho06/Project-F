@@ -21,7 +21,7 @@ public class PlayerSeedPickState : PlayerPickState
             {
                 if (obj.TryGetComponent<Soil>(out Soil soil))
                 {
-                    if (soil.currentState.HasFlag(SoilState.Plantable))
+                    if (!soil.currentState.HasFlag(SoilState.Planted) && soil.currentState.HasFlag(SoilState.Plantable))
                     {
                         if (Inventory.instance.Slots[InventoryBar.instance.curIndex].CurrentStackCount > 0)
                         {

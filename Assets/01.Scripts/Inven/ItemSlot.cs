@@ -8,7 +8,11 @@ using UnityEngine.EventSystems;
 public class ItemSlot : MonoBehaviour, IPointerUpHandler
 {
     [SerializeField] Item currentItem = null;
-    public Item CurrentItem => currentItem;
+    public Item CurrentItem
+    {
+        get { return currentItem; }
+        set { currentItem = value; }
+    }
 
     private int currentStackCount = 0;
     public int CurrentStackCount
@@ -17,8 +21,8 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
         set { currentStackCount = value; }
     }
 
-    private TextMeshProUGUI stackText = null;
-    private Image image = null;
+    public TextMeshProUGUI stackText = null;
+    public Image image = null;
 
     private void Awake()
     {

@@ -107,7 +107,7 @@ public class Soil : MonoBehaviour
             return false;
         }
 
-        if (cropItem.ItemType != ItemType.CropSeed)
+        if (cropItem.ItemType != ItemType.Seed)
         {
             return false;
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 public enum ItemType
 {
     NoneItem = 0,
-    CropSeed,
+    Seed,
     WateringCan,
     Fertilizer,
     Sickle,

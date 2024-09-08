@@ -5,7 +5,11 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] ItemSO itemData;
-    public ItemSO ItemData => itemData;
+    public ItemSO ItemData
+    {
+        get { return itemData; }
+        set {  itemData = value; }
+    }
 
     private SpriteRenderer spriteRenderer;
 

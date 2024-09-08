@@ -86,9 +86,44 @@ public class InventoryBar : MonoBehaviour
         if (inventory.ItemList.Count > curIndex)
         {
             if (slots[curIndex].CurrentStackCount - value <= 0)
-                Inventory.instance.Slots[curIndex].SetItem(_player.currentItem, 0);
+            {
+                Inventory.instance.Slots[curIndex].SetItem(_player.currentItem, 1);
+                if (slots[curIndex].CurrentItem.ItemData.ItemType == ItemType.Seed || slots[curIndex].CurrentItem.ItemData.ItemType == ItemType.Fertilizer)
+                {
+                    Inventory.instance.Slots[curIndex].Use();
+                    slots[curIndex].CurrentItem = inventory.NoneItem;
+                    Inventory.instance.RedrawInven();
+                    RedrawInven();
+                }
+            }
             else
                 Inventory.instance.Slots[curIndex].SetItem(_player.currentItem, slots[curIndex].CurrentStackCount - value);
+        }
+    }
+
+    public void RedrawInven()
+    {
+        foreach (ItemSlot slot in slots)
+        {
+            slot.SetItem(Inventory.instance.NoneItem, Inventory.instance.NoneItem.ItemData.StackCount);
+        }
+
+        for (int i = 0; i < Inventory.instance.ItemList.Count; i++)
+        {
+            foreach (ItemSlot slot in slots)
+            {
+                if (slot.CurrentItem.ItemData.ItemName == Inventory.instance.ItemList[i].ItemData.ItemName) //이미 있으면 스택에 추가
+                    if (slot.CurrentStackCount < Inventory.instance.ItemList[i].ItemData.StackCount)
+                    {
+                        slot.AddItem();
+                        break;
+                    }
+                if (slot.CurrentItem.ItemData.ItemName == "NoneItem") //없으면 생성
+                {
+                    slot.SetItem(Inventory.instance.ItemList[i], 1);
+                    break;
+                }
+            }
         }
     }
 }

@@ -78,6 +78,7 @@ public class Crop : MonoBehaviour
         }
 
         Debug.Log($"{_plantedCrop.cropName} ¼öÈ®µÊ.");
+        ItemManager.Instance.SpawnItem(_plantedCrop.cropName, plantedSoil.transform.position);
         plantedSoil.Plow(true);
 
         isHarvestable = false;
