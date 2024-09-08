@@ -29,6 +29,7 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
         stackText = GetComponentInChildren<TextMeshProUGUI>();
         image = transform.GetChild(1).GetComponent<Image>();
         image.sprite = currentItem.ItemData.ItemImage;
+        image.color = Color.clear;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -52,6 +53,7 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
                 Inventory.instance.ItemList.Remove(currentItem);
                 currentItem = Inventory.instance.NoneItem;
                 image.sprite = currentItem.ItemData.ItemImage;
+                image.color = Color.clear;
             }
         }
         stackText.text = currentStackCount == 0 ? string.Empty : $"{currentStackCount}";
@@ -68,6 +70,7 @@ public class ItemSlot : MonoBehaviour, IPointerUpHandler
         currentItem = item;
         currentStackCount = count;
         image.sprite = currentItem.ItemData.ItemImage;
+        image.color = Color.white;
 
         stackText.text = currentStackCount == 0 ? string.Empty : $"{currentStackCount}";
     }
